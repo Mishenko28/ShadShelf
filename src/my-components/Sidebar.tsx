@@ -1,6 +1,7 @@
+import { startTransition } from "react"
 import { DotIcon } from "lucide-react"
 import { myComponents } from "./my-components"
-import { Link, useResolvedPath } from "react-router"
+import { useNavigate, useResolvedPath } from "react-router"
 import { cn } from "cn"
 
 type Navigation = {
@@ -23,6 +24,7 @@ const navigations: Navigation[] = myComponents.map(component => ({
 
 export default function Sidebar() {
 	const pathname = useResolvedPath({}).pathname
+	const navigate = useNavigate()
 
 	const activeVariant = pathname.split("/")[3]
 
@@ -40,7 +42,11 @@ export default function Sidebar() {
 						{nav.variants.length > 1 && (
 							<div>
 								{nav.variants.map(variant => (
-									<Link to={`${nav.path}/${variant.path}`} key={variant.path}>
+									<div
+										key={variant.path}
+										onClick={() => startTransition(() => navigate(`${nav.path}/${variant.path}`))}
+										className="w-full"
+									>
 										<div
 											className={cn(
 												"text-muted-foreground cursor-pointer px-2 py-0.5",
@@ -54,7 +60,7 @@ export default function Sidebar() {
 												<h1>{variant.name}</h1>
 											</span>
 										</div>
-									</Link>
+									</div>
 								))}
 							</div>
 						)}

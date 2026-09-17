@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { ChevronRightIcon, ComponentIcon } from "lucide-react"
 import { Outlet, useResolvedPath } from "react-router"
 import { getNameByPath, getVariantNameByPath } from "./my-components"
@@ -19,7 +20,9 @@ export default function ComponentLayout() {
 				</span>
 			</header>
 			<div className="p-4">
-				<Outlet />
+				<Suspense fallback={<p>Loading...</p>}>
+					<Outlet />
+				</Suspense>
 			</div>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { lazy, StrictMode, Suspense } from "react"
+import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 
 import "./index.css"
@@ -13,9 +13,7 @@ type RouteType = {
 	path: string
 	variants: {
 		path: string
-		component: () => Promise<{
-			default: () => React.JSX.Element
-		}>
+		component: React.LazyExoticComponent<() => React.JSX.Element>
 	}[]
 }
 
@@ -37,21 +35,9 @@ createRoot(document.getElementById("root")!).render(
 					<Route path="components" element={<ComponentsLayout />}>
 						{routes.map(route => (
 							<Route path={route.path} key={route.path} element={<ComponentLayout />}>
-								{route.variants.map(variant => {
-									const Component = lazy(variant.component)
-
-									return (
-										<Route
-											path={variant.path}
-											key={variant.path}
-											element={
-												<Suspense fallback={<div>Loading...</div>}>
-													<Component />
-												</Suspense>
-											}
-										/>
-									)
-								})}
+								{route.variants.map(({ component: Component, path }) => (
+									<Route path={path} key={path} element={<Component />} />
+								))}
 							</Route>
 						))}
 					</Route>

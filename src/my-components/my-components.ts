@@ -1,3 +1,5 @@
+import { lazy } from "react"
+
 export const myComponents = [
 	{
 		name: "Accordion",
@@ -6,13 +8,16 @@ export const myComponents = [
 			{
 				name: "Single",
 				path: "accordion-single",
-				component: () => import("./components/Accordion").then(module => ({ default: module.AccordionSingle })),
+				component: lazy(() =>
+					import("./components/Accordion").then(module => ({ default: module.AccordionSingle })),
+				),
 			},
 			{
 				name: "Multiple",
 				path: "accordion-multiple",
-				component: () =>
+				component: lazy(() =>
 					import("./components/Accordion").then(module => ({ default: module.AccordionMultiple })),
+				),
 			},
 		],
 	},
@@ -23,23 +28,28 @@ export const myComponents = [
 			{
 				name: "Default",
 				path: "alert-default",
-				component: () => import("./components/Alert").then(module => ({ default: module.AlertDefault })),
+				component: lazy(() => import("./components/Alert").then(module => ({ default: module.AlertDefault }))),
 			},
 			{
 				name: "Destructive",
 				path: "alert-destructive",
-				component: () => import("./components/Alert").then(module => ({ default: module.AlertDestructive })),
+				component: lazy(() =>
+					import("./components/Alert").then(module => ({ default: module.AlertDestructive })),
+				),
 			},
 			{
 				name: "Default Action",
 				path: "alert-default-action",
-				component: () => import("./components/Alert").then(module => ({ default: module.AlertDefaultAction })),
+				component: lazy(() =>
+					import("./components/Alert").then(module => ({ default: module.AlertDefaultAction })),
+				),
 			},
 			{
 				name: "Destructive Action",
 				path: "alert-destructive-action",
-				component: () =>
+				component: lazy(() =>
 					import("./components/Alert").then(module => ({ default: module.AlertDestructiveAction })),
+				),
 			},
 		],
 	},
