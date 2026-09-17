@@ -29,13 +29,13 @@ export default function Sidebar() {
 	const activeVariant = pathname.split("/")[3]
 
 	return (
-		<div className="w-50 border-2 border-lime-400">
+		<div className="corner-bevel w-50 overflow-hidden rounded-md border-2 border-lime-400">
 			<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center">
 				<h1>Components</h1>
 			</div>
 			<div>
 				{navigations.map(nav => (
-					<div key={nav.path} className="border-b-2 border-b-lime-400">
+					<div key={nav.path} className="border-b border-lime-400/50">
 						<div className="px-2 py-1.25">
 							<h1 className="text-sm">{nav.name}</h1>
 						</div>

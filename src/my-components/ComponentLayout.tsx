@@ -10,8 +10,8 @@ export default function ComponentLayout() {
 	const variantName = getVariantNameByPath(pathname.split("/")[3])
 
 	return (
-		<div className="h-full border-2 border-lime-400">
-			<header className="border-b-2 border-lime-400 p-2">
+		<div className="flex h-full flex-col gap-1.5">
+			<header className="corner-bevel rounded-md border-2 border-lime-400 p-2">
 				<span className="flex items-center gap-1">
 					<ComponentIcon size={16} />
 					<h1>{componentName}</h1>
@@ -19,7 +19,7 @@ export default function ComponentLayout() {
 					<h1>{variantName}</h1>
 				</span>
 			</header>
-			<div className="p-4">
+			<div className="flex-1 rounded-md corner-bevel border-2 border-lime-400 p-4">
 				<Suspense fallback={<p>Loading...</p>}>
 					<Outlet />
 				</Suspense>
