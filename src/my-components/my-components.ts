@@ -7,16 +7,16 @@ export const myComponents = [
 		variants: [
 			{
 				name: "Single",
-				path: "accordion-single",
+				path: "single",
 				component: lazy(() =>
-					import("./components/Accordion").then(module => ({ default: module.AccordionSingle })),
+					import("./components/Accordion/AccordionSingle").then(module => ({ default: module.default })),
 				),
 			},
 			{
 				name: "Multiple",
-				path: "accordion-multiple",
+				path: "multiple",
 				component: lazy(() =>
-					import("./components/Accordion").then(module => ({ default: module.AccordionMultiple })),
+					import("./components/Accordion/AccordionMultiple").then(module => ({ default: module.default })),
 				),
 			},
 		],
@@ -27,42 +27,44 @@ export const myComponents = [
 		variants: [
 			{
 				name: "Default",
-				path: "alert-default",
-				component: lazy(() => import("./components/Alert").then(module => ({ default: module.AlertDefault }))),
+				path: "default",
+				component: lazy(() =>
+					import("./components/Alert/AlertDefault").then(module => ({ default: module.default })),
+				),
 			},
 			{
 				name: "Destructive",
-				path: "alert-destructive",
+				path: "destructive",
 				component: lazy(() =>
-					import("./components/Alert").then(module => ({ default: module.AlertDestructive })),
+					import("./components/Alert/AlertDestructive").then(module => ({ default: module.default })),
 				),
 			},
 			{
 				name: "Default Icon",
-				path: "alert-default-icon",
+				path: "default-icon",
 				component: lazy(() =>
-					import("./components/Alert").then(module => ({ default: module.AlertDefaultIcon })),
+					import("./components/Alert/AlertDefaultIcon").then(module => ({ default: module.default })),
 				),
 			},
 			{
 				name: "Destructive Icon",
-				path: "alert-destructive-icon",
+				path: "destructive-icon",
 				component: lazy(() =>
-					import("./components/Alert").then(module => ({ default: module.AlertDestructiveIcon })),
+					import("./components/Alert/AlertDestructiveIcon").then(module => ({ default: module.default })),
 				),
 			},
 			{
 				name: "Default Action",
-				path: "alert-default-action",
+				path: "default-action",
 				component: lazy(() =>
-					import("./components/Alert").then(module => ({ default: module.AlertDefaultAction })),
+					import("./components/Alert/AlertDefaultAction").then(module => ({ default: module.default })),
 				),
 			},
 			{
 				name: "Destructive Action",
-				path: "alert-destructive-action",
+				path: "destructive-action",
 				component: lazy(() =>
-					import("./components/Alert").then(module => ({ default: module.AlertDestructiveAction })),
+					import("./components/Alert/AlertDestructiveAction").then(module => ({ default: module.default })),
 				),
 			},
 		],
