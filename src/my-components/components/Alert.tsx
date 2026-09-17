@@ -1,9 +1,30 @@
 import { AlertCircleIcon, CheckCircle2Icon } from "lucide-react"
-
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 
 export function AlertDefault() {
+	return (
+		<Alert>
+			<AlertTitle>Account updated successfully</AlertTitle>
+			<AlertDescription>
+				Your profile information has been saved. Changes will be reflected immediately.
+			</AlertDescription>
+		</Alert>
+	)
+}
+
+export function AlertDestructive() {
+	return (
+		<Alert variant="destructive">
+			<AlertTitle>Payment failed</AlertTitle>
+			<AlertDescription>
+				Your payment could not be processed. Please check your payment method and try again.
+			</AlertDescription>
+		</Alert>
+	)
+}
+
+export function AlertDefaultIcon() {
 	return (
 		<Alert>
 			<CheckCircle2Icon />
@@ -15,7 +36,7 @@ export function AlertDefault() {
 	)
 }
 
-export function AlertDestructive() {
+export function AlertDestructiveIcon() {
 	return (
 		<Alert variant="destructive">
 			<AlertCircleIcon />

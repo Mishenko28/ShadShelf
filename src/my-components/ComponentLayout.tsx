@@ -11,15 +11,19 @@ export default function ComponentLayout() {
 
 	return (
 		<div className="flex h-full flex-col gap-1.5">
-			<header className="corner-bevel rounded-md border-2 border-lime-400 p-2">
+			<header className="corner-bevel flex items-center justify-between rounded-md border-2 border-lime-400 p-1.25 pl-3">
 				<span className="flex items-center gap-1">
 					<ComponentIcon size={16} />
 					<h1>{componentName}</h1>
 					<ChevronRightIcon size={16} />
 					<h1>{variantName}</h1>
 				</span>
+				<div className="space-x-1">
+					<button className="custom-button">Copy Imports</button>
+					<button className="custom-button">Copy Component</button>
+				</div>
 			</header>
-			<div className="flex-1 rounded-md corner-bevel border-2 border-lime-400 p-4">
+			<div className="corner-bevel flex-1 rounded-md border-2 border-lime-400 p-4">
 				<Suspense fallback={<p>Loading...</p>}>
 					<Outlet />
 				</Suspense>

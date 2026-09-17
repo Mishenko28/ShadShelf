@@ -38,6 +38,20 @@ export const myComponents = [
 				),
 			},
 			{
+				name: "Default Icon",
+				path: "alert-default-icon",
+				component: lazy(() =>
+					import("./components/Alert").then(module => ({ default: module.AlertDefaultIcon })),
+				),
+			},
+			{
+				name: "Destructive Icon",
+				path: "alert-destructive-icon",
+				component: lazy(() =>
+					import("./components/Alert").then(module => ({ default: module.AlertDestructiveIcon })),
+				),
+			},
+			{
 				name: "Default Action",
 				path: "alert-default-action",
 				component: lazy(() =>
