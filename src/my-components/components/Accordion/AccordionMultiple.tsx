@@ -1,4 +1,6 @@
+// IMPORT START
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+// IMPORT END
 
 const items = [
 	{
@@ -23,6 +25,7 @@ const items = [
 
 export default function AccordionMultiple() {
 	return (
+		// COMPONENT START
 		<Accordion type="multiple">
 			{items.map(item => (
 				<AccordionItem key={item.id} value={item.id}>
@@ -31,5 +34,6 @@ export default function AccordionMultiple() {
 				</AccordionItem>
 			))}
 		</Accordion>
+		// COMPONENT END
 	)
 }

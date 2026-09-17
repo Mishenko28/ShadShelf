@@ -76,7 +76,7 @@ export default function Sidebar() {
 					))}
 				</div>
 			</div>
-			<div className="corner-bevel w-35 overflow-hidden rounded-md border-2 border-lime-400">
+			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
 				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
 					<h1>Variations</h1>
 				</div>
@@ -90,7 +90,7 @@ export default function Sidebar() {
 										startTransition(() => navigate(`${activeComponent.path}/${variant.path}`))
 									}
 									className={cn(
-										"cursor-pointer px-3 py-1.5 text-xs",
+										"cursor-pointer px-2 py-1.5 text-xs",
 										activeVariantPath === variant.path
 											? "text-background bg-lime-400"
 											: "hover:bg-accent",

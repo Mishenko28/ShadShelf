@@ -1,0 +1,38 @@
+{
+    "Accordion": {
+        "AccordionMultiple": {
+            "importText": "import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@/components/ui/accordion\"",
+            "componentText": "<Accordion type=\"multiple\">\r\n\t\t\t{items.map(item => (\r\n\t\t\t\t<AccordionItem key={item.id} value={item.id}>\r\n\t\t\t\t\t<AccordionTrigger>{item.trigger}</AccordionTrigger>\r\n\t\t\t\t\t<AccordionContent>{item.content}</AccordionContent>\r\n\t\t\t\t</AccordionItem>\r\n\t\t\t))}\r\n\t\t</Accordion>"
+        },
+        "AccordionSingle": {
+            "importText": "import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@/components/ui/accordion\"",
+            "componentText": "<Accordion type=\"single\" collapsible>\r\n\t\t\t{items.map(item => (\r\n\t\t\t\t<AccordionItem key={item.id} value={item.id}>\r\n\t\t\t\t\t<AccordionTrigger>{item.trigger}</AccordionTrigger>\r\n\t\t\t\t\t<AccordionContent>{item.content}</AccordionContent>\r\n\t\t\t\t</AccordionItem>\r\n\t\t\t))}\r\n\t\t</Accordion>"
+        }
+    },
+    "Alert": {
+        "AlertDefault": {
+            "importText": "import { Alert, AlertDescription, AlertTitle } from \"@/components/ui/alert\"",
+            "componentText": "<Alert>\r\n\t\t\t<AlertTitle>Account updated successfully</AlertTitle>\r\n\t\t\t<AlertDescription>\r\n\t\t\t\tYour profile information has been saved. Changes will be reflected immediately.\r\n\t\t\t</AlertDescription>\r\n\t\t</Alert>"
+        },
+        "AlertDefaultAction": {
+            "importText": "import { CheckCircle2Icon } from \"lucide-react\"\r\nimport { Alert, AlertAction, AlertDescription, AlertTitle } from \"@/components/ui/alert\"\r\nimport { Button } from \"@/components/ui/button\"",
+            "componentText": "<Alert>\r\n\t\t\t<CheckCircle2Icon />\r\n\t\t\t<AlertTitle>Dark mode is now available</AlertTitle>\r\n\t\t\t<AlertDescription>Enable it under your profile settings to get started.</AlertDescription>\r\n\t\t\t<AlertAction>\r\n\t\t\t\t<Button>Enable</Button>\r\n\t\t\t</AlertAction>\r\n\t\t</Alert>"
+        },
+        "AlertDefaultIcon": {
+            "importText": "import { CheckCircle2Icon } from \"lucide-react\"\r\nimport { Alert, AlertDescription, AlertTitle } from \"@/components/ui/alert\"",
+            "componentText": "<Alert>\r\n\t\t\t<CheckCircle2Icon />\r\n\t\t\t<AlertTitle>Account updated successfully</AlertTitle>\r\n\t\t\t<AlertDescription>\r\n\t\t\t\tYour profile information has been saved. Changes will be reflected immediately.\r\n\t\t\t</AlertDescription>\r\n\t\t</Alert>"
+        },
+        "AlertDestructive": {
+            "importText": "import { Alert, AlertDescription, AlertTitle } from \"@/components/ui/alert\"",
+            "componentText": "<Alert variant=\"destructive\">\r\n\t\t\t<AlertTitle>Payment failed</AlertTitle>\r\n\t\t\t<AlertDescription>\r\n\t\t\t\tYour payment could not be processed. Please check your payment method and try again.\r\n\t\t\t</AlertDescription>\r\n\t\t</Alert>"
+        },
+        "AlertDestructiveAction": {
+            "importText": "import { AlertCircleIcon } from \"lucide-react\"\r\nimport { Alert, AlertAction, AlertDescription, AlertTitle } from \"@/components/ui/alert\"\r\nimport { Button } from \"@/components/ui/button\"",
+            "componentText": "<Alert variant=\"destructive\">\r\n\t\t\t<AlertCircleIcon />\r\n\t\t\t<AlertTitle>Payment failed</AlertTitle>\r\n\t\t\t<AlertDescription>\r\n\t\t\t\tYour payment could not be processed. Please check your payment method and try again.\r\n\t\t\t</AlertDescription>\r\n\t\t\t<AlertAction>\r\n\t\t\t\t<Button>Enable</Button>\r\n\t\t\t</AlertAction>\r\n\t\t</Alert>"
+        },
+        "AlertDestructiveIcon": {
+            "importText": "import { AlertCircleIcon } from \"lucide-react\"\r\nimport { Alert, AlertDescription, AlertTitle } from \"@/components/ui/alert\"",
+            "componentText": "<Alert variant=\"destructive\">\r\n\t\t\t<AlertCircleIcon />\r\n\t\t\t<AlertTitle>Payment failed</AlertTitle>\r\n\t\t\t<AlertDescription>\r\n\t\t\t\tYour payment could not be processed. Please check your payment method and try again.\r\n\t\t\t</AlertDescription>\r\n\t\t</Alert>"
+        }
+    }
+}

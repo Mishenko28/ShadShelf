@@ -1,4 +1,16 @@
 import { lazy } from "react"
+import componentCopyJson from "./componentCopy.json"
+
+type ComponentCopy = {
+	[key: string]: {
+		[variant: string]: {
+			importText: string
+			componentText: string
+		}
+	}
+}
+
+const componentCopy: ComponentCopy = componentCopyJson
 
 export const myComponents = [
 	{
@@ -8,6 +20,7 @@ export const myComponents = [
 			{
 				name: "Single",
 				path: "single",
+				fileName: "AccordionSingle",
 				component: lazy(() =>
 					import("./components/Accordion/AccordionSingle").then(module => ({ default: module.default })),
 				),
@@ -15,6 +28,7 @@ export const myComponents = [
 			{
 				name: "Multiple",
 				path: "multiple",
+				fileName: "AccordionMultiple",
 				component: lazy(() =>
 					import("./components/Accordion/AccordionMultiple").then(module => ({ default: module.default })),
 				),
@@ -28,6 +42,7 @@ export const myComponents = [
 			{
 				name: "Default",
 				path: "default",
+				fileName: "AlertDefault",
 				component: lazy(() =>
 					import("./components/Alert/AlertDefault").then(module => ({ default: module.default })),
 				),
@@ -35,6 +50,7 @@ export const myComponents = [
 			{
 				name: "Destructive",
 				path: "destructive",
+				fileName: "AlertDestructive",
 				component: lazy(() =>
 					import("./components/Alert/AlertDestructive").then(module => ({ default: module.default })),
 				),
@@ -42,6 +58,7 @@ export const myComponents = [
 			{
 				name: "Default Icon",
 				path: "default-icon",
+				fileName: "AlertDefaultIcon",
 				component: lazy(() =>
 					import("./components/Alert/AlertDefaultIcon").then(module => ({ default: module.default })),
 				),
@@ -49,6 +66,7 @@ export const myComponents = [
 			{
 				name: "Destructive Icon",
 				path: "destructive-icon",
+				fileName: "AlertDestructiveIcon",
 				component: lazy(() =>
 					import("./components/Alert/AlertDestructiveIcon").then(module => ({ default: module.default })),
 				),
@@ -56,6 +74,7 @@ export const myComponents = [
 			{
 				name: "Default Action",
 				path: "default-action",
+				fileName: "AlertDefaultAction",
 				component: lazy(() =>
 					import("./components/Alert/AlertDefaultAction").then(module => ({ default: module.default })),
 				),
@@ -63,6 +82,7 @@ export const myComponents = [
 			{
 				name: "Destructive Action",
 				path: "destructive-action",
+				fileName: "AlertDestructiveAction",
 				component: lazy(() =>
 					import("./components/Alert/AlertDestructiveAction").then(module => ({ default: module.default })),
 				),
@@ -71,14 +91,18 @@ export const myComponents = [
 	},
 ]
 
-export function getNameByPath(path: string) {
-	const component = myComponents.find(component => component.path === path)
-	if (!component) return path
-	return component.name
+export function getComponentByPath(path: string) {
+	return myComponents.find(component => component.path === path)
 }
 
-export function getVariantNameByPath(variantPath: string) {
-	const variant = myComponents.flatMap(component => component.variants).find(variant => variant.path === variantPath)
-	if (!variant) return variantPath
-	return variant.name
+export function getVariantByPath(variantPath: string) {
+	return myComponents.flatMap(component => component.variants).find(variant => variant.path === variantPath)
+}
+
+export function getImportTexts(componentName: string, variantFileName: string) {
+	return componentCopy[componentName]?.[variantFileName]?.importText || ""
+}
+
+export function getComponentText(componentName: string, variantFileName: string) {
+	return componentCopy[componentName]?.[variantFileName]?.componentText || ""
 }
