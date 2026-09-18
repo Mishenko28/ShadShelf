@@ -208,6 +208,112 @@ export const myComponents = [
 			},
 		],
 	},
+	{
+		name: "Attachment",
+		path: "attachment",
+		variants: [
+			{
+				name: "Default",
+				path: "default",
+				fileName: "AttachmentDefault",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentDefault").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Small",
+				path: "small",
+				fileName: "AttachmentSmall",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentSmall").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Xs",
+				path: "xs",
+				fileName: "AttachmentXs",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentXs").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Vertical",
+				path: "vertical",
+				fileName: "AttachmentVertical",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentVertical").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Vertical Small",
+				path: "vertical-small",
+				fileName: "AttachmentVerticalSmall",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentVerticalSmall").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Vertical Xs",
+				path: "vertical-xs",
+				fileName: "AttachmentVerticalXs",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentVerticalXs").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Image",
+				path: "image",
+				fileName: "AttachmentImage",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentImage").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Image Small",
+				path: "image-small",
+				fileName: "AttachmentImageSmall",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentImageSmall").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Image Vertical",
+				path: "image-vertical",
+				fileName: "AttachmentImageVertical",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentImageVertical").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Image Vertical Small",
+				path: "image-vertical-small",
+				fileName: "AttachmentImageVerticalSmall",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentImageVerticalSmall").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Group",
+				path: "group",
+				fileName: "AttachmentGroupVariant",
+				component: lazy(() =>
+					import("./components/Attachment/AttachmentGroupVariant").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+		],
+	},
 ]
 
 export function getComponentByPath(path: string) {
