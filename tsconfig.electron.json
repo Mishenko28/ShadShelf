@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"target": "es2023",
+		"lib": [
+			"ES2023"
+		],
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"types": [
+			"node"
+		],
+		"outDir": "electron/dist",
+		"rootDir": "electron",
+		"strict": true,
+		"skipLibCheck": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": false
+	},
+	"include": [
+		"electron"
+	]
+}

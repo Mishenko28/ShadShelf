@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"main": "electron/dist/main.js",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
@@ -10,7 +11,9 @@
 		"format": "prettier --write \"**/*.{ts,tsx}\"",
 		"typecheck": "tsc --noEmit",
 		"preview": "vite preview",
-		"generate": "node src/scripts/generate.ts"
+		"generate": "node src/scripts/generate.ts",
+		"electron:dev": "tsc -p tsconfig.electron.json && concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+		"electron:build": "tsc -p tsconfig.electron.json && vite build && electron-builder"
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.3.0",
@@ -25,6 +28,7 @@
 		"react-dom": "^19.2.8",
 		"react-router": "^8.4.0",
 		"shadcn": "^4.21.0",
+		"tailwind-scrollbar-hide": "^4.0.0",
 		"tailwindcss": "^4",
 		"tw-animate-css": "^1.4.0",
 		"zustand": "^5.0.15"
@@ -36,6 +40,8 @@
 		"@types/react-dom": "^19",
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"@vitejs/plugin-react": "^6",
+		"concurrently": "^10.0.5",
+		"electron": "^44.4.1",
 		"eslint": "^10",
 		"eslint-plugin-react-hooks": "^7.1.1",
 		"eslint-plugin-react-refresh": "^0.5.2",
@@ -45,6 +51,7 @@
 		"react-syntax-highlighter": "^16.1.1",
 		"typescript": "~6",
 		"typescript-eslint": "^8",
-		"vite": "^8"
+		"vite": "^8",
+		"wait-on": "^9.1.0"
 	}
 }
