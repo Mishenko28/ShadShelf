@@ -13,7 +13,7 @@ export default function ComponentsLayout() {
 	const navigate = useNavigate()
 
 	const component = getComponentByPath(pathname.split("/")[2])
-	const variant = getVariantByPath(pathname.split("/")[4])
+	const variant = getVariantByPath(component?.path ?? "", pathname.split("/")[4])
 
 	const [importCoppied, setImportCoppied] = useState(false)
 	const handleCopyImports = async () => {

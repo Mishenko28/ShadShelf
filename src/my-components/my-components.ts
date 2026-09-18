@@ -314,14 +314,85 @@ export const myComponents = [
 			},
 		],
 	},
+	{
+		name: "Avatar",
+		path: "avatar",
+		variants: [
+			{
+				name: "Default",
+				path: "default",
+				fileName: "AvatarDefault",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarDefault").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Image",
+				path: "image",
+				fileName: "AvatarImage",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarImage").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Badge",
+				path: "badge",
+				fileName: "AvatarBadge",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarBadge").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Image Badge",
+				path: "image-badge",
+				fileName: "AvatarImageBadge",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarImageBadge").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Small",
+				path: "small",
+				fileName: "AvatarSmall",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarSmall").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Large",
+				path: "large",
+				fileName: "AvatarLarge",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarLarge").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Group",
+				path: "group",
+				fileName: "AvatarGroupDefault",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarGroupDefault").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Group Small",
+				path: "group-small",
+				fileName: "AvatarGroupSmall",
+				component: lazy(() =>
+					import("./components/Avatar/AvatarGroupSmall").then(module => ({ default: module.default })),
+				),
+			},
+		],
+	},
 ]
 
 export function getComponentByPath(path: string) {
 	return myComponents.find(component => component.path === path)
 }
 
-export function getVariantByPath(variantPath: string) {
-	return myComponents.flatMap(component => component.variants).find(variant => variant.path === variantPath)
+export function getVariantByPath(componentPath: string, variantPath: string) {
+	const component = getComponentByPath(componentPath)
+	return component?.variants.find(variant => variant.path === variantPath)
 }
 
 export function getImportTexts(componentName: string, variantFileName: string) {

@@ -4,7 +4,7 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 export default function Code({ componentPath, variantPath }: { componentPath: string; variantPath: string }) {
 	const component = getComponentByPath(componentPath)
-	const variant = getVariantByPath(variantPath)
+	const variant = getVariantByPath(componentPath, variantPath)
 
 	const code = getWholeCode(component?.name || "", variant?.fileName || "")
 
