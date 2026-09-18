@@ -32,6 +32,9 @@ function createWindow() {
 		if (input.key === "F11" && input.type === "keyDown") {
 			win.setFullScreen(!win.isFullScreen())
 		}
+		if (isDev && input.control && input.shift && input.key.toLowerCase() === "j" && input.type === "keyDown") {
+			win.webContents.toggleDevTools()
+		}
 	})
 }
 

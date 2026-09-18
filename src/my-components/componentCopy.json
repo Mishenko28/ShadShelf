@@ -84,5 +84,27 @@
             "componentText": "<AlertDialog>\n\t\t\t<AlertDialogTrigger asChild>\n\t\t\t\t<Button variant=\"destructive\">Open</Button>\n\t\t\t</AlertDialogTrigger>\n\t\t\t<AlertDialogContent size=\"sm\">\n\t\t\t\t<AlertDialogHeader>\n\t\t\t\t\t<AlertDialogTitle>Lorem ipsum dolor sit amet.</AlertDialogTitle>\n\t\t\t\t\t<AlertDialogDescription>\n\t\t\t\t\t\tLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, necessitatibus.\n\t\t\t\t\t</AlertDialogDescription>\n\t\t\t\t</AlertDialogHeader>\n\t\t\t\t<AlertDialogFooter>\n\t\t\t\t\t<AlertDialogCancel>Cancel</AlertDialogCancel>\n\t\t\t\t\t<AlertDialogAction variant=\"destructive\">Action</AlertDialogAction>\n\t\t\t\t</AlertDialogFooter>\n\t\t\t</AlertDialogContent>\n\t\t</AlertDialog>",
             "wholeCode": "import {\n\tAlertDialog,\n\tAlertDialogAction,\n\tAlertDialogCancel,\n\tAlertDialogContent,\n\tAlertDialogDescription,\n\tAlertDialogFooter,\n\tAlertDialogHeader,\n\tAlertDialogTitle,\n\tAlertDialogTrigger,\n} from \"@/components/ui/alert-dialog\"\nimport { Button } from \"@/components/ui/button\"\n\nexport default function AlertDialogSimpleSmallDestructive() {\n\treturn (\n\t\t<AlertDialog>\n\t\t\t<AlertDialogTrigger asChild>\n\t\t\t\t<Button variant=\"destructive\">Open</Button>\n\t\t\t</AlertDialogTrigger>\n\t\t\t<AlertDialogContent size=\"sm\">\n\t\t\t\t<AlertDialogHeader>\n\t\t\t\t\t<AlertDialogTitle>Lorem ipsum dolor sit amet.</AlertDialogTitle>\n\t\t\t\t\t<AlertDialogDescription>\n\t\t\t\t\t\tLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, necessitatibus.\n\t\t\t\t\t</AlertDialogDescription>\n\t\t\t\t</AlertDialogHeader>\n\t\t\t\t<AlertDialogFooter>\n\t\t\t\t\t<AlertDialogCancel>Cancel</AlertDialogCancel>\n\t\t\t\t\t<AlertDialogAction variant=\"destructive\">Action</AlertDialogAction>\n\t\t\t\t</AlertDialogFooter>\n\t\t\t</AlertDialogContent>\n\t\t</AlertDialog>\n\t)\n}"
         }
+    },
+    "Aspect Ratio": {
+        "AspectRatioClassic": {
+            "importText": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"",
+            "componentText": "<AspectRatio ratio={4 / 3}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>",
+            "wholeCode": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"\n\nexport default function AspectRatioClassic() {\n\treturn (\n\t\t<div className=\"size-100\">\n\t\t\t<AspectRatio ratio={4 / 3}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>\n\t\t</div>\n\t)\n}"
+        },
+        "AspectRatioPortrait": {
+            "importText": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"",
+            "componentText": "<AspectRatio ratio={3 / 4}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>",
+            "wholeCode": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"\n\nexport default function AspectRatioPortrait() {\n\treturn (\n\t\t<div className=\"size-100\">\n\t\t\t<AspectRatio ratio={3 / 4}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>\n\t\t</div>\n\t)\n}"
+        },
+        "AspectRatioSquare": {
+            "importText": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"",
+            "componentText": "<AspectRatio ratio={1}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>",
+            "wholeCode": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"\n\nexport default function AspectRatioSquare() {\n\treturn (\n\t\t<div className=\"size-100\">\n\t\t\t<AspectRatio ratio={1}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>\n\t\t</div>\n\t)\n}"
+        },
+        "AspectRatioVideo": {
+            "importText": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"",
+            "componentText": "<AspectRatio ratio={16 / 9}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>",
+            "wholeCode": "import { AspectRatio } from \"@/components/ui/aspect-ratio\"\n\nexport default function AspectRatioVideo() {\n\treturn (\n\t\t<div className=\"size-100\">\n\t\t\t<AspectRatio ratio={16 / 9}>\n\t\t\t\t<div className=\"bg-accent h-full w-full\" />\n\t\t\t</AspectRatio>\n\t\t</div>\n\t)\n}"
+        }
     }
 }

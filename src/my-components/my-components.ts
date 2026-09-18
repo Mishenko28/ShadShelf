@@ -81,6 +81,7 @@ export const myComponents = [
 			},
 		],
 	},
+
 	{
 		name: "Alert Dialog",
 		path: "alert-dialog",
@@ -159,6 +160,48 @@ export const myComponents = [
 				fileName: "AlertDialogSimpleSmallDestructive",
 				component: lazy(() =>
 					import("./components/Alert Dialog/AlertDialogSimpleSmallDestructive").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+		],
+	},
+	{
+		name: "Aspect Ratio",
+		path: "aspect-ratio",
+		variants: [
+			{
+				name: "Square",
+				path: "square",
+				fileName: "AspectRatioSquare",
+				component: lazy(() =>
+					import("./components/Aspect Ratio/AspectRatioSquare").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Video",
+				path: "video",
+				fileName: "AspectRatioVideo",
+				component: lazy(() =>
+					import("./components/Aspect Ratio/AspectRatioVideo").then(module => ({ default: module.default })),
+				),
+			},
+			{
+				name: "Portrait",
+				path: "portrait",
+				fileName: "AspectRatioPortrait",
+				component: lazy(() =>
+					import("./components/Aspect Ratio/AspectRatioPortrait").then(module => ({
+						default: module.default,
+					})),
+				),
+			},
+			{
+				name: "Classic",
+				path: "classic",
+				fileName: "AspectRatioClassic",
+				component: lazy(() =>
+					import("./components/Aspect Ratio/AspectRatioClassic").then(module => ({
 						default: module.default,
 					})),
 				),
