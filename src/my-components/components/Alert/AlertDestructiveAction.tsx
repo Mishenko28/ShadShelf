@@ -1,22 +1,20 @@
-// IMPORT START
-import { AlertCircleIcon } from "lucide-react"
+// ---
+import { ImageIcon } from "lucide-react"
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
-// IMPORT END
+// ---
 
 export default function AlertDestructiveAction() {
 	return (
-		// COMPONENT START
+		// ---
 		<Alert variant="destructive">
-			<AlertCircleIcon />
-			<AlertTitle>Payment failed</AlertTitle>
-			<AlertDescription>
-				Your payment could not be processed. Please check your payment method and try again.
-			</AlertDescription>
+			<ImageIcon />
+			<AlertTitle>Lorem ipsum dolor sit amet.</AlertTitle>
+			<AlertDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, esse?</AlertDescription>
 			<AlertAction>
-				<Button>Enable</Button>
+				<Button>Action</Button>
 			</AlertAction>
 		</Alert>
-		// COMPONENT END
+		// ---
 	)
 }

@@ -1,18 +1,18 @@
-// IMPORT START
-import { CheckCircle2Icon } from "lucide-react"
+// ---
+import { ImageIcon } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-// IMPORT END
+// ---
 
 export default function AlertDefaultIcon() {
 	return (
-		// COMPONENT START
+		// ---
 		<Alert>
-			<CheckCircle2Icon />
-			<AlertTitle>Account updated successfully</AlertTitle>
+			<ImageIcon />
+			<AlertTitle>Lorem ipsum dolor sit amet.</AlertTitle>
 			<AlertDescription>
-				Your profile information has been saved. Changes will be reflected immediately.
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, excepturi?
 			</AlertDescription>
 		</Alert>
-		// COMPONENT END
+		// ---
 	)
 }

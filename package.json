@@ -9,7 +9,8 @@
 		"lint": "eslint .",
 		"format": "prettier --write \"**/*.{ts,tsx}\"",
 		"typecheck": "tsc --noEmit",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"generate": "node src/scripts/generate.ts"
 	},
 	"dependencies": {
 		"@fontsource-variable/inter": "^5.3.0",
@@ -27,6 +28,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10",
+		"@faker-js/faker": "^10.6.0",
 		"@types/node": "^20.19.43",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",

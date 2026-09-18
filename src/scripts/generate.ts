@@ -11,10 +11,7 @@ type ComponentCopy = {
 	}
 }
 
-const IMPORT_START = "// IMPORT START"
-const IMPORT_END = "// IMPORT END"
-const COMPONENT_START = "// COMPONENT START"
-const COMPONENT_END = "// COMPONENT END"
+const SEPARATOR = "// ---"
 
 const componentPath = "../my-components/components/"
 
@@ -33,15 +30,17 @@ for (const componentName of componentsNames) {
 			const variationName = variation.split(".")[0]
 			const contents = fs.readFileSync(path.join(__dirname, componentPath, componentName, variation), "utf-8")
 
-			if (!contents.includes(IMPORT_START) || !contents.includes(IMPORT_END)) {
+			const contentParts = contents.split(SEPARATOR)
+
+			if (contentParts.length < 4) {
 				console.warn(
-					`Skipping ${componentName}/${variation} as it does not contain the required import markers.`,
+					`Skipping ${componentName}/${variation} because it does not have the required number of separators (${contentParts.length - 1}/4).`,
 				)
 				return acc
 			}
 
-			const importText = contents.split(IMPORT_START)[1].split(IMPORT_END)[0].trim()
-			const componentText = contents.split(COMPONENT_START)[1].split(COMPONENT_END)[0].trim()
+			const importText = contentParts[1].trim()
+			const componentText = contentParts[3].trim()
 
 			acc[variationName] = {
 				importText,

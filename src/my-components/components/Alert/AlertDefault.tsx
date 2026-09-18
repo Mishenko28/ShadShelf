@@ -1,16 +1,16 @@
-// IMPORT START
+// ---
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-// IMPORT END
+// ---
 
 export default function AlertDefault() {
 	return (
-		// COMPONENT START
+		// ---
 		<Alert>
-			<AlertTitle>Account updated successfully</AlertTitle>
+			<AlertTitle>Lorem ipsum dolor sit amet.</AlertTitle>
 			<AlertDescription>
-				Your profile information has been saved. Changes will be reflected immediately.
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, voluptatum!
 			</AlertDescription>
 		</Alert>
-		// COMPONENT END
+		// ---
 	)
 }
