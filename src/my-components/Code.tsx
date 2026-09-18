@@ -9,8 +9,15 @@ export default function Code({ componentPath, variantPath }: { componentPath: st
 	const code = getWholeCode(component?.name || "", variant?.fileName || "")
 
 	return (
-		<SyntaxHighlighter customStyle={{ height: "100%" }} language="tsx" style={vscDarkPlus} showLineNumbers>
-			{code}
-		</SyntaxHighlighter>
+		<div className="h-full overflow-hidden">
+			<SyntaxHighlighter
+				customStyle={{ height: "100%", scrollbarWidth: "none" }}
+				language="tsx"
+				style={vscDarkPlus}
+				showLineNumbers
+			>
+				{code}
+			</SyntaxHighlighter>
+		</div>
 	)
 }
