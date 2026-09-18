@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { cn } from "cn"
 
 const MotionSunIcon = motion.create(SunIcon)
 const MotionMoonIcon = motion.create(MoonIcon)
@@ -17,7 +18,7 @@ const variants = {
 
 const transition = { duration: 0.2, ease: "easeInOut" } as const
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ className, ...props }: React.ComponentProps<"button">) {
 	const { setTheme, theme } = useTheme()
 	const [mounted, setMounted] = useState(false)
 
@@ -31,8 +32,12 @@ export default function ThemeToggle() {
 
 	return (
 		<button
-			className="corner-bevel flex size-10 cursor-pointer items-center justify-center rounded-md bg-lime-400 text-black"
+			className={cn(
+				"corner-bevel flex size-10 cursor-pointer items-center justify-center rounded-md bg-lime-400 text-black",
+				className,
+			)}
 			onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+			{...props}
 		>
 			<AnimatePresence initial={false} mode="wait">
 				{theme === "light" && (

@@ -6,7 +6,6 @@ import App from "./App.tsx"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router"
 import ComponentsLayout from "./my-components/ComponentsLayout.tsx"
 import { myComponents } from "./my-components/my-components.ts"
-import ComponentLayout from "./my-components/ComponentLayout.tsx"
 import Code from "./my-components/Code.tsx"
 import { ThemeProvider } from "next-themes"
 
@@ -34,7 +33,7 @@ createRoot(document.getElementById("root")!).render(
 					<Route index element={<App />} />
 					<Route path="components" element={<ComponentsLayout />}>
 						{routes.map(route => (
-							<Route path={route.path} key={route.path} element={<ComponentLayout />}>
+							<Route path={route.path} key={route.path}>
 								<Route path="preview">
 									{route.variants.map(({ component: Component, path }) => (
 										<Route path={path} key={path} element={<Component />} />

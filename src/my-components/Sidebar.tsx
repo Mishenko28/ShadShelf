@@ -64,7 +64,7 @@ export default function Sidebar() {
 
 	return (
 		<div className="flex gap-1.5">
-			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
+			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400 shadow-md">
 				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
 					<h1>Components</h1>
 				</div>
@@ -83,9 +83,9 @@ export default function Sidebar() {
 					))}
 				</div>
 			</div>
-			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
+			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400 shadow-md">
 				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
-					<h1>Variations</h1>
+					<h1>Variants</h1>
 				</div>
 				<div onWheel={onWheelVariations} className="h-full">
 					{activeComponent && (
