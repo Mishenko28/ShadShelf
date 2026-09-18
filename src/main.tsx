@@ -3,11 +3,12 @@ import { createRoot } from "react-dom/client"
 
 import "./index.css"
 import App from "./App.tsx"
-import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router"
 import ComponentsLayout from "./my-components/ComponentsLayout.tsx"
 import { myComponents } from "./my-components/my-components.ts"
 import ComponentLayout from "./my-components/ComponentLayout.tsx"
+import Code from "./my-components/Code.tsx"
+import { ThemeProvider } from "next-themes"
 
 type RouteType = {
 	path: string
@@ -27,17 +28,27 @@ const routes: RouteType[] = myComponents.map(route => ({
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<ThemeProvider>
+		<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 			<BrowserRouter>
 				<Routes>
 					<Route index element={<App />} />
-
 					<Route path="components" element={<ComponentsLayout />}>
 						{routes.map(route => (
 							<Route path={route.path} key={route.path} element={<ComponentLayout />}>
-								{route.variants.map(({ component: Component, path }) => (
-									<Route path={path} key={path} element={<Component />} />
-								))}
+								<Route path="preview">
+									{route.variants.map(({ component: Component, path }) => (
+										<Route path={path} key={path} element={<Component />} />
+									))}
+								</Route>
+								<Route path="code">
+									{route.variants.map(({ path }) => (
+										<Route
+											path={path}
+											key={path}
+											element={<Code componentPath={route.path} variantPath={path} />}
+										/>
+									))}
+								</Route>
 							</Route>
 						))}
 					</Route>

@@ -1,14 +1,6 @@
 import { lazy } from "react"
 import componentCopyJson from "./componentCopy.json"
-
-type ComponentCopy = {
-	[key: string]: {
-		[variant: string]: {
-			importText: string
-			componentText: string
-		}
-	}
-}
+import type { ComponentCopy } from "@/scripts/generate"
 
 const componentCopy: ComponentCopy = componentCopyJson
 
@@ -189,4 +181,8 @@ export function getImportTexts(componentName: string, variantFileName: string) {
 
 export function getComponentText(componentName: string, variantFileName: string) {
 	return componentCopy[componentName]?.[variantFileName]?.componentText || ""
+}
+
+export function getWholeCode(componentName: string, variantFileName: string) {
+	return componentCopy[componentName]?.[variantFileName]?.wholeCode || ""
 }

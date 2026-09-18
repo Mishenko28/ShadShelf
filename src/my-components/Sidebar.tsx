@@ -2,6 +2,7 @@ import { startTransition, useState } from "react"
 import { myComponents } from "./my-components"
 import { useNavigate, useResolvedPath } from "react-router"
 import { cn } from "cn"
+import { useComponentStore } from "./useComponentStore"
 
 type Navigation = {
 	name: string
@@ -25,8 +26,10 @@ export default function Sidebar() {
 	const navigate = useNavigate()
 
 	const pathname = useResolvedPath({}).pathname
-	const activeVariantPath = pathname.split("/")[3]
 	const activeComponentPath = pathname.split("/")[2]
+	const activeVariantPath = pathname.split("/")[4]
+
+	const isPreview = useComponentStore(state => state.isPreview)
 
 	const [activeComponent, setActiveComponent] = useState<Navigation | null>(
 		activeComponentPath ? navigations.find(nav => nav.path === activeComponentPath) || null : null,
@@ -39,7 +42,9 @@ export default function Sidebar() {
 
 		if (activeComponent && nextIndex >= 0 && nextIndex < activeComponent.variants.length) {
 			const nextVariant = activeComponent.variants[nextIndex]
-			startTransition(() => navigate(`${activeComponent.path}/${nextVariant.path}`))
+			startTransition(() =>
+				navigate(`${activeComponent.path}/${isPreview ? "preview" : "code"}/${nextVariant.path}`),
+			)
 		}
 	}
 
@@ -51,12 +56,14 @@ export default function Sidebar() {
 		if (nextIndex >= 0 && nextIndex < navigations.length) {
 			const nextComponent = navigations[nextIndex]
 			setActiveComponent(nextComponent)
-			startTransition(() => navigate(`${nextComponent.path}/${nextComponent.variants[0].path}`))
+			startTransition(() =>
+				navigate(`${nextComponent.path}/${isPreview ? "preview" : "code"}/${nextComponent.variants[0].path}`),
+			)
 		}
 	}
 
 	return (
-		<div className="flex gap-3">
+		<div className="flex gap-1.5">
 			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
 				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
 					<h1>Components</h1>
@@ -68,7 +75,7 @@ export default function Sidebar() {
 							onClick={() => setActiveComponent(nav)}
 							className={cn(
 								"cursor-pointer px-3 py-1 text-sm",
-								activeComponent?.path === nav.path ? "text-background bg-lime-400" : "hover:bg-accent",
+								activeComponent?.path === nav.path ? "bg-lime-400 text-black" : "hover:bg-accent",
 							)}
 						>
 							{nav.name}
@@ -87,12 +94,16 @@ export default function Sidebar() {
 								<h1
 									key={variant.path}
 									onClick={() =>
-										startTransition(() => navigate(`${activeComponent.path}/${variant.path}`))
+										startTransition(() =>
+											navigate(
+												`${activeComponent.path}/${isPreview ? "preview" : "code"}/${variant.path}`,
+											),
+										)
 									}
 									className={cn(
 										"cursor-pointer px-2 py-1.5 text-xs",
 										activeVariantPath === variant.path
-											? "text-background bg-lime-400"
+											? "bg-lime-400 text-black"
 											: "hover:bg-accent",
 									)}
 								>

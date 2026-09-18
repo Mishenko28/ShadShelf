@@ -1,13 +1,18 @@
 import { Suspense, useState } from "react"
-import { ChevronRightIcon, ComponentIcon } from "lucide-react"
-import { Outlet, useResolvedPath } from "react-router"
-import { getImportTexts, getComponentByPath, getVariantByPath, getComponentText } from "./my-components"
+import { ChevronRightIcon, Code2Icon, ComponentIcon, EyeIcon } from "lucide-react"
+import { Outlet, useNavigate, useResolvedPath } from "react-router"
+import { getImportTexts, getComponentByPath, getVariantByPath, getComponentText, getWholeCode } from "./my-components"
+import { cn } from "cn"
+import { useComponentStore } from "./useComponentStore"
+import { useShallow } from "zustand/shallow"
+import ThemeToggle from "@/components/ThemeToggle"
 
 export default function ComponentLayout() {
 	const pathname = useResolvedPath({}).pathname
+	const navigate = useNavigate()
 
 	const component = getComponentByPath(pathname.split("/")[2])
-	const variant = getVariantByPath(pathname.split("/")[3])
+	const variant = getVariantByPath(pathname.split("/")[4])
 
 	const [importCoppied, setImportCoppied] = useState(false)
 	const handleCopyImports = async () => {
@@ -27,25 +32,72 @@ export default function ComponentLayout() {
 		setTimeout(() => setComponentCoppied(false), 1000)
 	}
 
+	const [codeCoppied, setCodeCoppied] = useState(false)
+	const handleCopyCode = async () => {
+		if (!component || !variant) return
+		const codeText = getWholeCode(component.name, variant.fileName)
+		await navigator.clipboard.writeText(codeText)
+		setCodeCoppied(true)
+		setTimeout(() => setCodeCoppied(false), 1000)
+	}
+
+	const { isPreview, setIsPreview } = useComponentStore(
+		useShallow(state => ({
+			isPreview: state.isPreview,
+			setIsPreview: state.setIsPreview,
+		})),
+	)
+
+	const handleTogglePreview = (isPreview: boolean) => {
+		setIsPreview(isPreview)
+		navigate(`${isPreview ? "preview" : "code"}/${variant?.path}`)
+	}
+
 	return (
 		<div className="flex h-full flex-col gap-1.5">
-			<header className="corner-bevel flex items-center justify-between rounded-md border-2 border-lime-400 p-1.25 pl-3">
-				<span className="flex items-center gap-1">
-					<ComponentIcon size={16} />
-					<h1>{component?.name}</h1>
-					<ChevronRightIcon size={16} />
-					<h1>{variant?.name}</h1>
+			<header className="flex items-center justify-between gap-1">
+				<span className="corner-bevel flex h-10 min-w-0 flex-1 items-center gap-1 rounded-md border-2 border-lime-400 px-3">
+					<ComponentIcon size={16} className="shrink-0" />
+					<h1 className="shrink-0 whitespace-nowrap">{component?.name}</h1>
+					<ChevronRightIcon size={16} className="shrink-0" />
+					<h1 className="min-w-0 truncate">{variant?.name}</h1>
 				</span>
-				<div className="space-x-1">
-					<button className="custom-button w-38" onClick={handleCopyImports}>
-						{importCoppied ? "Copied!" : "Copy Imports"}
-					</button>
-					<button className="custom-button w-38" onClick={handleCopyComponent}>
-						{componentCoppied ? "Copied!" : "Copy Component"}
-					</button>
+				<div className="flex gap-1">
+					<div className="corner-bevel flex h-10 rounded-md border-2 border-lime-400 p-0.5 text-sm">
+						<button
+							className={cn(
+								"corner-bevel flex h-full w-12 cursor-pointer items-center justify-center rounded-sm",
+								isPreview && "bg-lime-400 text-black",
+							)}
+							onClick={() => handleTogglePreview(true)}
+						>
+							<EyeIcon size={16} />
+						</button>
+						<button
+							className={cn(
+								"corner-bevel flex h-full w-12 cursor-pointer items-center justify-center rounded-sm",
+								!isPreview && "bg-lime-400 text-black",
+							)}
+							onClick={() => handleTogglePreview(false)}
+						>
+							<Code2Icon size={16} />
+						</button>
+					</div>
+					<div className="space-x-1">
+						<button className="custom-button w-35" onClick={handleCopyImports}>
+							{importCoppied ? "Copied!" : "Copy Imports"}
+						</button>
+						<button className="custom-button w-35" onClick={handleCopyComponent}>
+							{componentCoppied ? "Copied!" : "Copy Component"}
+						</button>
+						<button className="custom-button w-35" onClick={handleCopyCode}>
+							{codeCoppied ? "Copied!" : "Copy Code"}
+						</button>
+					</div>
+					<ThemeToggle />
 				</div>
 			</header>
-			<div className="corner-bevel flex-1 rounded-md border-2 border-lime-400 p-4">
+			<div className="corner-bevel h-full flex-1 overflow-hidden rounded-md border-2 border-lime-400 p-4">
 				<Suspense fallback={<p>Loading...</p>}>
 					<Outlet />
 				</Suspense>

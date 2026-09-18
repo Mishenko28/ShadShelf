@@ -2,11 +2,12 @@ import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
 
-type ComponentCopy = {
+export type ComponentCopy = {
 	[key: string]: {
 		[variant: string]: {
 			importText: string
 			componentText: string
+			wholeCode: string
 		}
 	}
 }
@@ -41,16 +42,22 @@ for (const componentName of componentsNames) {
 
 			const importText = contentParts[1].trim()
 			const componentText = contentParts[3].trim()
+			const wholeCode = contents
+				.split(/\r?\n/)
+				.filter(line => line.trim() !== SEPARATOR)
+				.join("\n")
+				.trim()
 
 			acc[variationName] = {
 				importText,
 				componentText,
+				wholeCode,
 			}
 
 			console.log(`+ ${componentName}/${variationName}`)
 			return acc
 		},
-		{} as { [key: string]: { importText: string; componentText: string } },
+		{} as { [key: string]: { importText: string; componentText: string; wholeCode: string } },
 	)
 }
 

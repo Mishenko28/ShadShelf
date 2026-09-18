@@ -143,5 +143,5 @@
 }
 
 @utility custom-button {
-	@apply corner-bevel text-background cursor-pointer rounded-sm bg-lime-400 px-3 py-1.5 text-sm hover:bg-lime-500 active:bg-lime-600;
+	@apply corner-bevel text-black h-10 cursor-pointer rounded-sm bg-lime-400 px-3 text-sm hover:bg-lime-500 active:bg-lime-600;
 }
