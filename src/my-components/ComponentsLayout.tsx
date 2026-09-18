@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { ChevronRightIcon, Code2Icon, ComponentIcon, EyeIcon, MoveLeftIcon } from "lucide-react"
 import { Outlet, useNavigate, useResolvedPath } from "react-router"
 import { getImportTexts, getComponentByPath, getVariantByPath, getComponentText, getWholeCode } from "./my-components"
@@ -55,6 +55,12 @@ export default function ComponentsLayout() {
 		navigate(`${component.path}/${isPreview ? "preview" : "code"}/${variant.path}`)
 	}
 
+	useEffect(() => {
+		if (pathname.split("/")[3] === "code") {
+			setIsPreview(false)
+		}
+	}, [])
+
 	return (
 		<>
 			<div className="flex h-svh flex-col items-center justify-center px-8 text-center text-sm lg:hidden">
@@ -64,9 +70,9 @@ export default function ComponentsLayout() {
 			<div className="hidden h-svh items-center justify-center p-4 lg:flex">
 				<div className="mx-auto flex h-full w-7xl gap-1.5">
 					<Sidebar />
-					<main className="flex flex-1 flex-col gap-1.5">
+					<main className="flex flex-1 flex-col gap-1.5 overflow-hidden">
 						<header className="flex items-center justify-between gap-1">
-							<span className="corner-bevel flex h-10 min-w-0 flex-1 items-center gap-1 rounded-md border-2 border-lime-400 px-3 shadow-md">
+							<span className="corner-bevel flex h-10 min-w-0 flex-1 items-center gap-1 rounded-md border-2 border-lime-400 px-3">
 								{component && (
 									<>
 										<ComponentIcon size={16} className="shrink-0" />
@@ -81,7 +87,7 @@ export default function ComponentsLayout() {
 								)}
 							</span>
 							<div className="flex gap-1">
-								<div className="corner-bevel flex h-10 rounded-md border-2 border-lime-400 p-0.5 text-sm shadow-md">
+								<div className="corner-bevel flex h-10 rounded-md border-2 border-lime-400 p-0.5 text-sm">
 									<button
 										className={cn(
 											"corner-bevel flex h-full w-12 cursor-pointer items-center justify-center rounded-sm",
@@ -105,31 +111,36 @@ export default function ComponentsLayout() {
 								</div>
 								<div className="space-x-1">
 									<button
-										className="custom-button w-35 shadow-md"
+										className="custom-button w-35"
 										disabled={!component || !variant}
 										onClick={handleCopyImports}
 									>
 										{importCoppied ? "Copied!" : "Copy Imports"}
 									</button>
 									<button
-										className="custom-button w-35 shadow-md"
+										className="custom-button w-35"
 										disabled={!component || !variant}
 										onClick={handleCopyComponent}
 									>
 										{componentCoppied ? "Copied!" : "Copy Component"}
 									</button>
 									<button
-										className="custom-button w-35 shadow-md"
+										className="custom-button w-35"
 										disabled={!component || !variant}
 										onClick={handleCopyCode}
 									>
 										{codeCoppied ? "Copied!" : "Copy Code"}
 									</button>
 								</div>
-								<ThemeToggle className="shadow-md" />
+								<ThemeToggle className="" />
 							</div>
 						</header>
-						<div className="corner-bevel h-full flex-1 overflow-hidden rounded-md border-2 border-lime-400 p-4 shadow-md">
+						<div
+							className={cn(
+								"corner-bevel h-full flex-1 overflow-hidden rounded-md border-2 border-lime-400",
+								isPreview && "p-4",
+							)}
+						>
 							{!component || !variant ? (
 								<div className="flex h-full w-full items-center justify-center">
 									<div className="flex items-center gap-2">

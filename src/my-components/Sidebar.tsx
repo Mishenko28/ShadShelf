@@ -3,6 +3,7 @@ import { myComponents } from "./my-components"
 import { useNavigate, useResolvedPath } from "react-router"
 import { cn } from "cn"
 import { useComponentStore } from "./useComponentStore"
+import { HomeIcon } from "lucide-react"
 
 type Navigation = {
 	name: string
@@ -63,56 +64,66 @@ export default function Sidebar() {
 	}
 
 	return (
-		<div className="flex gap-1.5">
-			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400 shadow-md">
-				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
-					<h1>Components</h1>
+		<div className="flex flex-col gap-1.5">
+			<div className="flex flex-1 gap-1.5">
+				<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
+					<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
+						<h1>Components</h1>
+					</div>
+					<div onWheel={onWheelComponents} className="h-full">
+						{navigations.map(nav => (
+							<h1
+								key={nav.path}
+								onClick={() => setActiveComponent(nav)}
+								className={cn(
+									"cursor-pointer px-3 py-1 text-sm",
+									activeComponent?.path === nav.path ? "bg-lime-400 text-black" : "hover:bg-accent",
+								)}
+							>
+								{nav.name}
+							</h1>
+						))}
+					</div>
 				</div>
-				<div onWheel={onWheelComponents} className="h-full">
-					{navigations.map(nav => (
-						<h1
-							key={nav.path}
-							onClick={() => setActiveComponent(nav)}
-							className={cn(
-								"cursor-pointer px-3 py-1 text-sm",
-								activeComponent?.path === nav.path ? "bg-lime-400 text-black" : "hover:bg-accent",
-							)}
-						>
-							{nav.name}
-						</h1>
-					))}
+				<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400">
+					<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
+						<h1>Variants</h1>
+					</div>
+					<div onWheel={onWheelVariations} className="h-full">
+						{activeComponent && (
+							<div>
+								{activeComponent.variants.map(variant => (
+									<h1
+										key={variant.path}
+										onClick={() =>
+											startTransition(() =>
+												navigate(
+													`${activeComponent.path}/${isPreview ? "preview" : "code"}/${variant.path}`,
+												),
+											)
+										}
+										className={cn(
+											"cursor-pointer px-2 py-1.5 text-xs",
+											activeVariantPath === variant.path
+												? "bg-lime-400 text-black"
+												: "hover:bg-accent",
+										)}
+									>
+										{variant.name}
+									</h1>
+								))}
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
-			<div className="corner-bevel w-40 overflow-hidden rounded-md border-2 border-lime-400 shadow-md">
-				<div className="bg-accent text-accent-foreground border-b-2 border-b-lime-400 p-1.5 text-center text-sm">
-					<h1>Variants</h1>
-				</div>
-				<div onWheel={onWheelVariations} className="h-full">
-					{activeComponent && (
-						<div>
-							{activeComponent.variants.map(variant => (
-								<h1
-									key={variant.path}
-									onClick={() =>
-										startTransition(() =>
-											navigate(
-												`${activeComponent.path}/${isPreview ? "preview" : "code"}/${variant.path}`,
-											),
-										)
-									}
-									className={cn(
-										"cursor-pointer px-2 py-1.5 text-xs",
-										activeVariantPath === variant.path
-											? "bg-lime-400 text-black"
-											: "hover:bg-accent",
-									)}
-								>
-									{variant.name}
-								</h1>
-							))}
-						</div>
-					)}
-				</div>
+			<div className="corner-bevel grid h-10 grid-cols-5 rounded-md border-2 border-lime-400 p-0.5">
+				<button
+					className="corner-bevel flex h-full cursor-pointer items-center justify-center rounded-sm bg-lime-400 text-black"
+					onClick={() => navigate("/")}
+				>
+					<HomeIcon size={16} />
+				</button>
 			</div>
 		</div>
 	)
